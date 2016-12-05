@@ -14,29 +14,29 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitManager {
 
-    private RetrofitService myRetrofitService;
-    private RetrofitServiceQuestion myRetrofitServiceQuestion;
+    private RetrofitService retrofitService;
+    private RetrofitServiceQuestion retrofitServiceQuestion;
 
-    public RetrofitService getMyRetrofitService() {
+    public RetrofitService getRetrofitService() {
 
-        if (myRetrofitService == null) {
+        if (retrofitService == null) {
 
             Retrofit retrofit = getRetrofit();
 
-            myRetrofitService = retrofit.create(RetrofitService.class);
+            retrofitService = retrofit.create(RetrofitService.class);
         }
-        return myRetrofitService;
+        return retrofitService;
     }
 
-    public RetrofitServiceQuestion getMyRetrofitServiceQuestion() {
+    public RetrofitServiceQuestion getRetrofitServiceQuestion() {
 
-        if (myRetrofitServiceQuestion == null) {
+        if (retrofitServiceQuestion == null) {
 
             Retrofit retrofit = getRetrofit();
 
-            myRetrofitServiceQuestion = retrofit.create(RetrofitServiceQuestion.class);
+            retrofitServiceQuestion = retrofit.create(RetrofitServiceQuestion.class);
         }
-        return myRetrofitServiceQuestion;
+        return retrofitServiceQuestion;
     }
 
     @NonNull

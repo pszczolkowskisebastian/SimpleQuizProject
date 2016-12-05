@@ -1,106 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    android:background="@color/cardview_shadow_end_color"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="4dp"
+    card_view:contentPadding="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
-            android:text="Quiz title"
+            android:id="@+id/quizTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/quizTitle" />
+            android:layout_marginBottom="5dp"
+            android:text="Quiz title"
+            android:textColor="#8A000000"
+            android:textSize="13dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/questionPicture"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
             android:layout_below="@id/quizTitle"
-            app:srcCompat="@drawable/placeholder_320"
-            android:id="@+id/questionPicture" />
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/trzysta" />
 
-    <TextView
-        android:text="Question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewQuestion"
-        android:layout_below="@id/questionPicture"/>
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textViewQuestion"
-        android:indeterminate="false"
-        android:progress="0"
-        android:max="6"
-        android:id="@+id/progressBar" />
-
-    <TextView
-        android:text="Progress 1/6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBarInfo"
-        android:layout_below="@id/progressBar"
-        android:layout_centerHorizontal="true"/>
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/progressBarInfo"
-        android:id="@+id/radioGroup">
-
-        <RadioButton
-            android:text="Answer1"
+        <TextView
+            android:id="@+id/textViewQuestion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioButtonAnswer1"
-            android:layout_weight="1" />
+            android:layout_below="@id/questionPicture"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Question"
+            android:textColor="#DE000000"
+            android:textSize="15dp" />
 
-        <RadioButton
-            android:text="Answer2"
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioButtonAnswer2"
-            android:layout_weight="1" />
+            android:layout_below="@+id/textViewQuestion"
+            android:layout_marginBottom="5dp">
 
-        <RadioButton
-            android:text="Answer3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButtonAnswer3"
-            android:layout_weight="1" />
+            <RadioButton
+                android:id="@+id/radioButtonAnswer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="#DE000000"
+                android:textSize="13dp" />
 
-        <RadioButton
-            android:text="Answer4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButtonAnswer4"
-            android:layout_weight="1" />
+            <RadioButton
+                android:id="@+id/radioButtonAnswer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="#DE000000"
+                android:textSize="13dp" />
 
-        <RadioButton
-            android:text="Answer5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButtonAnswer5"
-            android:layout_weight="1" />
+            <RadioButton
+                android:id="@+id/radioButtonAnswer3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="#DE000000"
+                android:textSize="13dp" />
 
-        <RadioButton
-            android:text="Answer6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButtonAnswer6"
-            android:layout_weight="1" />
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/radioButtonAnswer4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textColor="#DE000000"
+                android:textSize="13dp" />
+        </RadioGroup>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/radioGroup">
-        <Button
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Button"
-            android:id="@+id/Button"/>
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioGroup"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:indeterminate="false"
+            android:max="6"
+            android:progress="0"
+            android:textColor="#8A000000"
+            android:textSize="13dp" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/progressBarInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:text="Progress" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

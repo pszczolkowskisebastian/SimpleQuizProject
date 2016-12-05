@@ -8,7 +8,6 @@ public class Constants {
 
     public static final class HTTP {
 
-        /*TODO*/ // for my json
         public static final String URL = "http://quiz.o2.pl";
 
     }

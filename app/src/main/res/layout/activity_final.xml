@@ -1,78 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_final"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="pszczolkowskisebastian.simplequiz.ui.FinalActivity">
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    android:background="@color/cardview_shadow_end_color"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="4dp"
+    card_view:contentPadding="5dp">
 
-    <RelativeLayout
-        android:orientation="vertical"
+    <LinearLayout
+        android:id="@+id/activity_final"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textViewBrawo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:text="Brawo!"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textViewBrawo" />
+            android:textColor="#DE000000"
+            android:textSize="40dp" />
 
         <TextView
-            android:text="Odpowiedziałeś na:"
+            android:id="@+id/textViewOn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewOn"
-            android:layout_below="@id/textViewBrawo"/>
+            android:layout_below="@id/textViewBrawo"
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"
+            android:text="Odpowiedziałeś na:"
+            android:textColor="#DE000000"
+            android:textSize="30dp" />
 
         <Space
             android:id="@+id/space"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="200dp"
-            android:layout_below="@id/textViewOn"/>
+            android:layout_below="@id/textViewOn"
+            android:layout_marginBottom="100dp" />
 
         <TextView
-            android:text="pytań"
+            android:id="@+id/textViewProcent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/texViewProcent"
-            android:layout_below="@id/space" />
+            android:layout_below="@id/space"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_horizontal"
+            android:text="0%"
+            android:textColor="#DE000000"
+            android:textSize="45dp" />
 
         <TextView
-            android:text="pytań"
+            android:id="@+id/textViewPytan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewPy"
-            android:layout_below="@id/space"/>
+            android:layout_below="@id/textViewProcent"
+            android:gravity="center_horizontal"
+            android:text="pytań"
+            android:textColor="#DE000000"
+            android:textSize="30dp" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@id/textViewPy"
-            android:layout_centerHorizontal="true">
+            android:layout_below="@id/textViewPytan"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
 
             <Button
-                android:text="Button"
+                android:id="@+id/buttonQuizList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/buttonQuizList" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:padding="10dp"
+                android:text="Przejdź do listy quizów"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
 
             <Button
-                android:text="Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/buttonTryAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_toRightOf="@id/buttonQuizList"
-                />
-        </RelativeLayout>
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"
+                android:padding="10dp"
+                android:text="Rozwiąż jeszcze raz"
+                android:textColor="@color/cardview_light_background"
+                android:textSize="18dp" />
 
-    </RelativeLayout>
-</RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

@@ -1,161 +1,63 @@
 package pszczolkowskisebastian.simplequiz.model.gsonQuestion;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Sebastian on 02.12.2016.
- */
+public class Question {
 
-public class Question implements Parcelable {
+  @SerializedName("answer") @Expose private String answer;
+  @SerializedName("answers") @Expose private List<Answer> answers = null;
+  @SerializedName("image") @Expose private Image_ image;
+  @SerializedName("order") @Expose private String order;
+  @SerializedName("text") @Expose private String text;
+  @SerializedName("type") @Expose private String type;
 
-    @SerializedName("image")
-    @Expose
-    private Image image;
-    @SerializedName("answers")
-    @Expose
-    private List<Answer> answersList = new ArrayList<Answer>();
-    @SerializedName("text")
-    @Expose
-    private String text;
-    @SerializedName("answer")
-    @Expose
-    private String answer;
-    @SerializedName("type")
-    @Expose
-    private String type;
-    @SerializedName("order")
-    @Expose
-    private Integer order;
+  public String getAnswer() {
+    return answer;
+  }
 
-    /**
-     * @return The image
-     */
-    public Image getImage() {
-        return image;
-    }
+  public void setAnswer(String answer) {
+    this.answer = answer;
+  }
 
-    /**
-     * @param image The image
-     */
-    public void setImage(Image image) {
-        this.image = image;
-    }
+  public List<Answer> getAnswers() {
+    return answers;
+  }
 
-    /**
-     * @return The answers
-     */
-    public List<Answer> getAnswers() {
-        return answersList;
-    }
+  public void setAnswers(List<Answer> answers) {
+    this.answers = answers;
+  }
 
-    /**
-     * @param answers The answers
-     */
-    public void setAnswers(List<Answer> answers) {
-        this.answersList = answers;
-    }
+  public Image_ getImage() {
+    return image;
+  }
 
-    /**
-     * @return The text
-     */
-    public String getText() {
-        return text;
-    }
+  public void setImage(Image_ image) {
+    this.image = image;
+  }
 
-    /**
-     * @param text The text
-     */
-    public void setText(String text) {
-        this.text = text;
-    }
+  public String getOrder() {
+    return order;
+  }
 
-    /**
-     * @return The answer
-     */
-    public String getAnswer() {
-        return answer;
-    }
+  public void setOrder(String order) {
+    this.order = order;
+  }
 
-    /**
-     * @param answer The answer
-     */
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
+  public String getText() {
+    return text;
+  }
 
-    /**
-     * @return The type
-     */
-    public String getType() {
-        return type;
-    }
+  public void setText(String text) {
+    this.text = text;
+  }
 
-    /**
-     * @param type The type
-     */
-    public void setType(String type) {
-        this.type = type;
-    }
+  public String getType() {
+    return type;
+  }
 
-    /**
-     * @return The order
-     */
-    public Integer getOrder() {
-        return order;
-    }
-
-    /**
-     * @param order The order
-     */
-    public void setOrder(Integer order) {
-        this.order = order;
-    }
-
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(this.image, flags);
-        dest.writeList(this.answersList);
-        dest.writeString(this.text);
-        dest.writeString(this.answer);
-        dest.writeString(this.type);
-        dest.writeValue(this.order);
-    }
-
-    public Question() {
-    }
-
-    protected Question(Parcel in) {
-        this.image = in.readParcelable(Image.class.getClassLoader());
-        this.answersList = new ArrayList<Answer>();
-        in.readList(this.answersList, Question.class.getClassLoader());
-        this.text = in.readString();
-        this.answer = in.readString();
-        this.type = in.readString();
-        this.order = (Integer) in.readValue(Integer.class.getClassLoader());
-    }
-
-    public static final Parcelable.Creator<Question> CREATOR = new Parcelable.Creator<Question>() {
-        @Override
-        public Question createFromParcel(Parcel source) {
-            return new Question(source);
-        }
-
-        @Override
-        public Question[] newArray(int size) {
-            return new Question[size];
-        }
-    };
+  public void setType(String type) {
+    this.type = type;
+  }
 }

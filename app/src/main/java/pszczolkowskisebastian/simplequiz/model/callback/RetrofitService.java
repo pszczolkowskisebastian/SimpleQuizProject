@@ -1,6 +1,5 @@
 package pszczolkowskisebastian.simplequiz.model.callback;
 
-import pszczolkowskisebastian.simplequiz.model.gsonQuestion.Question;
 import pszczolkowskisebastian.simplequiz.model.gsonTitle.MainQuizBranch;
 
 import retrofit2.Call;
@@ -14,4 +13,5 @@ public interface RetrofitService {
 
     @GET("/api/v1/quizzes/0/100/")
     Call<MainQuizBranch> getAllQuiz();
+
 }

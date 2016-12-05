@@ -28,9 +28,10 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.QuizC
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         configViews();
 
         myManager = new RetrofitManager();
@@ -47,18 +48,24 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.QuizC
     }
 
     private void getQuizInfo() {
-        Call<MainQuizBranch> listCall = myManager.getMyRetrofitService().getAllQuiz();
+
+        Call<MainQuizBranch> listCall = myManager.getRetrofitService().getAllQuiz();
+
         listCall.enqueue(new Callback<MainQuizBranch>() {
             @Override
             public void onResponse(Call<MainQuizBranch> call, Response<MainQuizBranch> response) {
 
                 if (response.isSuccessful()) {
+
                     MainQuizBranch mainQuizBranch = response.body();
 
                     for (int i = 0; i < mainQuizBranch.items.size(); i++) {
+
                         QuizTitleBranch quiz = mainQuizBranch.items.get(i);
                         myQuizAdapter.addQuiz(quiz);
+
                     }
+
                 } else {
 
                     int status = response.code();
@@ -76,22 +83,24 @@ public class MainActivity extends AppCompatActivity implements QuizAdapter.QuizC
     }
 
     private void configViews() {
+
         myRecyclerView = (RecyclerView) this.findViewById(R.id.recyclerView);
         myRecyclerView.setHasFixedSize(true);
         myRecyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
         myRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false));
 
-
         myQuizAdapter = new QuizAdapter(this);
         myRecyclerView.setAdapter(myQuizAdapter);
+
     }
 
     @Override
     public void onClick(int position) {
-        QuizTitleBranch selectedVeryMainItem = myQuizAdapter.getSelectedQuiz(position);
 
+        QuizTitleBranch selectedVeryMainItem = myQuizAdapter.getSelectedQuiz(position);
         Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
         intent.putExtra(Constants.REFERENCE.QUIZ, selectedVeryMainItem);
         startActivity(intent);
+
     }
 }

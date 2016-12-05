@@ -1,25 +1,70 @@
 package pszczolkowskisebastian.simplequiz.ui;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import pszczolkowskisebastian.simplequiz.R;
+import pszczolkowskisebastian.simplequiz.model.gsonQuestion.Question;
+import pszczolkowskisebastian.simplequiz.model.gsonTitle.QuizTitleBranch;
+import pszczolkowskisebastian.simplequiz.model.helper.Constants;
 
 public class FinalActivity extends AppCompatActivity {
 
     private Button buttonQuizList;
     private Button buttonTryAgain;
     private TextView textViewProcent;
+    private QuizTitleBranch quizTitleBranch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final);
 
+        initViews();
+        getInitExtras();
+
+    }
+
+    private void initViews() {
+
         buttonQuizList = (Button) findViewById(R.id.buttonQuizList);
         buttonTryAgain = (Button) findViewById(R.id.buttonTryAgain);
-        textViewProcent = (TextView) findViewById(R.id.texViewProcent);
+        textViewProcent = (TextView) findViewById(R.id.textViewProcent);
+
+        buttonQuizList.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(FinalActivity.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        buttonTryAgain.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(FinalActivity.this, QuestionActivity.class);
+                intent.putExtra(Constants.REFERENCE.QUIZ, quizTitleBranch);
+                startActivity(intent);/*TODO*/
+
+            }
+        });
+    }
+
+    public void getInitExtras() {
+
+        quizTitleBranch = getIntent().getExtras().getParcelable(Constants.REFERENCE.QUIZ);
+        final int result = getIntent().getExtras().getInt("result");
+        textViewProcent.setText(result + " %");
+
     }
 }
