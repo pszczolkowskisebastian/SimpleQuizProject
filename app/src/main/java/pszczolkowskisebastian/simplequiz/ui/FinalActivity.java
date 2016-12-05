@@ -8,16 +8,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import pszczolkowskisebastian.simplequiz.R;
-import pszczolkowskisebastian.simplequiz.model.gsonQuestion.Question;
 import pszczolkowskisebastian.simplequiz.model.gsonTitle.QuizTitleBranch;
 import pszczolkowskisebastian.simplequiz.model.helper.Constants;
 
 public class FinalActivity extends AppCompatActivity {
 
+    public static final String QUIZ_ID = "quizId";
+    public static final String RESULT_PERCENT = "result";
     private Button buttonQuizList;
     private Button buttonTryAgain;
     private TextView textViewProcent;
     private QuizTitleBranch quizTitleBranch;
+    private int correctAnswerPercent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,6 @@ public class FinalActivity extends AppCompatActivity {
 
         initViews();
         getInitExtras();
-
     }
 
     private void initViews() {
@@ -42,8 +43,10 @@ public class FinalActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(FinalActivity.this, MainActivity.class);
-                startActivity(intent);
+                intent.putExtra(RESULT_PERCENT, correctAnswerPercent);
+                intent.putExtra(QUIZ_ID, quizTitleBranch.id);
 
+                startActivity(intent);
             }
         });
 
@@ -54,17 +57,14 @@ public class FinalActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(FinalActivity.this, QuestionActivity.class);
                 intent.putExtra(Constants.REFERENCE.QUIZ, quizTitleBranch);
-                startActivity(intent);/*TODO*/
-
+                startActivity(intent);
             }
         });
     }
 
     public void getInitExtras() {
-
         quizTitleBranch = getIntent().getExtras().getParcelable(Constants.REFERENCE.QUIZ);
-        final int result = getIntent().getExtras().getInt("result");
-        textViewProcent.setText(result + " %");
-
+        correctAnswerPercent = getIntent().getExtras().getInt("result");
+        textViewProcent.setText(correctAnswerPercent + " %");
     }
 }

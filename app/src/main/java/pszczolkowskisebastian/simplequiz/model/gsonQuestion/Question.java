@@ -8,7 +8,7 @@ public class Question {
 
   @SerializedName("answer") @Expose private String answer;
   @SerializedName("answers") @Expose private List<Answer> answers = null;
-  @SerializedName("image") @Expose private Image_ image;
+  @SerializedName("image") @Expose private QuestionImage image;
   @SerializedName("order") @Expose private String order;
   @SerializedName("text") @Expose private String text;
   @SerializedName("type") @Expose private String type;
@@ -29,11 +29,11 @@ public class Question {
     this.answers = answers;
   }
 
-  public Image_ getImage() {
+  public QuestionImage getImage() {
     return image;
   }
 
-  public void setImage(Image_ image) {
+  public void setImage(QuestionImage image) {
     this.image = image;
   }
 

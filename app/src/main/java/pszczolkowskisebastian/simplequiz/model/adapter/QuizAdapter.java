@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
-
 import pszczolkowskisebastian.simplequiz.R;
 import pszczolkowskisebastian.simplequiz.model.gsonTitle.MainQuizBranch;
 import pszczolkowskisebastian.simplequiz.model.gsonTitle.QuizTitleBranch;
@@ -20,24 +18,26 @@ import pszczolkowskisebastian.simplequiz.model.gsonTitle.QuizTitleBranch;
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.Holder> {
 
     private final QuizClickListener listener;
+    private final long lastDoneQuiz;
+    private final int resultInPercent;
 
     private MainQuizBranch mainQuizBranch;
 
-    public QuizAdapter(QuizClickListener listener) {
+    public QuizAdapter(QuizClickListener listener, long lastDoneQuizId, int resultInPercent) {
+        lastDoneQuiz = lastDoneQuizId;
+        this.resultInPercent = resultInPercent;
         mainQuizBranch = new MainQuizBranch();
         this.listener = listener;
     }
 
-    @Override
-    public Holder onCreateViewHolder(ViewGroup parent, int viewType) { //row in recyclerwiev
+    @Override public Holder onCreateViewHolder(ViewGroup parent, int viewType) { //row in recyclerwiev
 
-        View view_row = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_row, parent, false);
+        View view_row =
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_row, parent, false);
         return new Holder(view_row);
-
     }
 
-    @Override
-    public void onBindViewHolder(Holder holder, int position) {
+    @Override public void onBindViewHolder(Holder holder, int position) {
 
         QuizTitleBranch quiz = mainQuizBranch.items.get(position);
 
@@ -45,10 +45,16 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.Holder> {
 
         holder.title.setText(quiz.title);
 
+        // my score:
+        if (quiz.id == lastDoneQuiz) {
+            holder.score.setVisibility(View.VISIBLE);
+            holder.score.setText("Twoj ostatni wynik: " + resultInPercent + "%");
+        } else {
+            holder.score.setVisibility(View.GONE);
+        }
     }
 
-    @Override
-    public int getItemCount() {
+    @Override public int getItemCount() {
         return mainQuizBranch.items.size();
     }
 
@@ -56,15 +62,12 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.Holder> {
 
         mainQuizBranch.items.add(quiz);
         notifyDataSetChanged();
-
     }
 
     public QuizTitleBranch getSelectedQuiz(int position) {
 
         return mainQuizBranch.items.get(position);
-
     }
-
 
     public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -79,19 +82,15 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.Holder> {
             score = (TextView) itemView.findViewById(R.id.yourScore);
 
             itemView.setOnClickListener(this);
-
         }
 
-        @Override
-        public void onClick(View view) {
+        @Override public void onClick(View view) {
             listener.onClick(getLayoutPosition());
         }
-
     }
 
     public interface QuizClickListener {
 
         void onClick(int position);
-
     }
 }
